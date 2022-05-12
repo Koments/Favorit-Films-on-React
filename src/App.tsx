@@ -1,26 +1,54 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "./App.scss";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-function App() {
+import { Film, FilmsList } from "./components/FilmList/FilmList";
+import { NavBar } from "./components/Header/Header";
+import { TopRatedFilms } from "./components/TopRatedFilms/TopRatedFilms";
+import { SearchByGenre } from "./components/SearchByGenre/SearchByGenre";
+
+
+export function App() {
+  const filmsList = useSelector((state: any) => state.films);
+  const dispatch = useDispatch();
+
+  async function fetchMoviesJSON() {
+    const response = await fetch(
+      "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=70f38a0b17bb6c507ef9e0853610e971"
+    );
+    const movies = await response.json();
+    return movies;
+  }
+
+  useEffect(() => {
+    fetchMoviesJSON().then((movies: any) => {
+      const films = movies.results as Film[];
+      dispatch({ type: "updateFilms", payload: films });
+    });
+  }, [dispatch]);
+
+  // console.log(filmsList);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <>
+      <header>
+        <NavBar />
       </header>
-    </div>
+      <div className="container">
+        <div className="main">
+          <div className="main-left">
+            <h3>Top Rated Films: </h3>
+            <div>
+              <TopRatedFilms />
+            </div>
+            <div>
+              <SearchByGenre />
+            </div>
+          </div>
+          <div className="main-right">
+            <FilmsList films={filmsList} />
+          </div>
+        </div>
+      </div>
+    </>
   );
 }
-
-export default App;

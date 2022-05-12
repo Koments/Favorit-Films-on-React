@@ -1,0 +1,32 @@
+.main {
+  color: #fff;
+  background-color: #08212f;
+  min-height: calc(100vh - 130px);
+  .film-info {
+    padding: 25px;
+    .poster-side {
+      float: left;
+      width: 180px;
+      margin-right: 20px;
+      .poster {
+        width: 100%;
+      }
+    }
+    .info-film-side {
+      float: left;
+      width: calc(100% - 200px);
+      font-size: 13px;
+      .title-film{
+        color: #46bf17;
+      }
+    }
+    .description {
+      color: #fff;
+      font-weight: 700;
+    }
+    .description-film-title {
+      display: block;
+      margin-top: 5px;
+    }
+  }
+}

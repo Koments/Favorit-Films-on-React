@@ -1,7 +1,8 @@
 .main {
   color: #fff;
   background-color: #08212f;
-  min-height: calc(100vh - 130px);
+      display: flex;
+    flex-wrap: wrap;
   .film-info {
     padding: 25px;
     .poster-side {
@@ -16,7 +17,7 @@
       float: left;
       width: calc(100% - 200px);
       font-size: 13px;
-      .title-film{
+      .title-film {
         color: #46bf17;
       }
     }
@@ -29,4 +30,11 @@
       margin-top: 5px;
     }
   }
+}
+.play-film-side {
+    width: 1000px;
+    margin: 50px;
+    height: 565px;
+  background-image: url(../../../public/playFilm.png);
+  background-size: cover;
 }

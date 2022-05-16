@@ -27,7 +27,6 @@ export function TopRatedFilms() {
 
   useEffect(() => {
     topRatedFilms().then((mopularFilms) => {
-      console.log(mopularFilms);
       const popularFilms = mopularFilms.results as PopularFilms;
       dispatch({ type: "showPopularFilms", payload: popularFilms });
     });
@@ -42,9 +41,9 @@ export function TopRatedFilms() {
           num += 1;
           if (num <= 8) {
             return (
-              <li key={index}>
+              <li key={index} className="pull-left top-rated-movies ">
                 <Link to={`/SelectedFilm/${movie.id}`}>
-                  <div className="cover">
+                  <div className="cover pull-left">
                     <img
                       className="top-rate-film"
                       src={

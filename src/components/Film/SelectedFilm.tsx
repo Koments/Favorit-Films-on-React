@@ -1,8 +1,10 @@
 import "./SelectedFilm.scss";
+import { NavBar } from "../Header/Header";
 
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { Footer } from "../../components/Footer/Footer";
 
 type Genre = {
   id: number;
@@ -36,20 +38,18 @@ export function SelectedFilm() {
       .then((films) => dispatch({ type: "showOneFilm", payload: films }));
   }, [dispatch, id]);
 
-  if (selectedFilm.genres == undefined) {
+  console.log(selectedFilm);
+
+  if (selectedFilm.genres === undefined) {
     return <></>;
   } else {
     var filmYearRelease = selectedFilm.release_date.split("-");
     var genres = selectedFilm.genres.map((genre) => genre.name).join(" ");
     return (
-      <div
-        style={{
-          maxWidth: "1100px",
-          width: "100%",
-          margin: "0 auto",
-          position: "relative",
-        }}
-      >
+      <div className="container">
+        <div className="header">
+          <NavBar />
+        </div>
         <div className="main">
           <div className="film-info">
             <div className="poster-side">
@@ -69,9 +69,6 @@ export function SelectedFilm() {
               </span>
               <div className="d-flex">
                 <div className="description">Genres:</div> {genres}
-                {/* {selectedFilm.genres.map((genre, index) => (
-                  <div key={index}>{genre.name}</div>
-                ))} */}
               </div>
               <div className="description-film-section">
                 <div>
@@ -85,6 +82,12 @@ export function SelectedFilm() {
               </div>
             </div>
           </div>
+          <div className="play-film-side">
+            {/* <img src="../../../public/playFilm.png" alt="" /> */}
+          </div>
+        </div>
+        <div>
+          <Footer />
         </div>
       </div>
     );

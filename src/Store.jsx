@@ -7,6 +7,8 @@ function reducer(
     oneFilm: [],
     favorites: [],
     popularFilms: [],
+    searchResultFilms: [],
+    showMoviesInSearch: [],
     search: "",
   },
   action
@@ -20,6 +22,12 @@ function reducer(
     }
     case "showPopularFilms": {
       return { ...state, popularFilms: action.payload };
+    }
+    case "showMoviesInSearch": {
+      return { ...state, searchFilms: action.payload };
+    }
+    case "newSearch": {
+      return { ...state, newSearch: action.payload };
     }
     default:
       return state;

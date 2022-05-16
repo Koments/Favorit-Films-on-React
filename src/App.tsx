@@ -5,8 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Film, FilmsList } from "./components/FilmList/FilmList";
 import { NavBar } from "./components/Header/Header";
 import { TopRatedFilms } from "./components/TopRatedFilms/TopRatedFilms";
-import { SearchByGenre } from "./components/SearchByGenre/SearchByGenre";
-
+import { SearchByYearRelease } from "./components/SearchByYearRelease/SearchByYearRelease";
+import { Footer } from "./components/Footer/Footer";
 
 export function App() {
   const filmsList = useSelector((state: any) => state.films);
@@ -27,27 +27,30 @@ export function App() {
     });
   }, [dispatch]);
 
-  // console.log(filmsList);
   return (
     <>
-      <header>
-        <NavBar />
-      </header>
       <div className="container">
+        <div className="header">
+          <NavBar />
+        </div>
         <div className="main">
-          <div className="main-left">
-            <h3>Top Rated Films: </h3>
-            <div>
+          <div className="main-left pull-left">
+            <h2>Top Rated Films: </h2>
+            <div className="top-rated-movies-list">
               <TopRatedFilms />
             </div>
-            <div>
-              <SearchByGenre />
+            <h2> Release Year:</h2>
+            <div className="years-release">
+              <SearchByYearRelease />
             </div>
           </div>
           <div className="main-right">
             <FilmsList films={filmsList} />
           </div>
         </div>
+        <footer>
+          <Footer />
+        </footer>
       </div>
     </>
   );
